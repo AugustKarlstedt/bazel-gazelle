@@ -44,7 +44,6 @@ Gazelle build file generator
 .. role:: cmd(code)
 .. role:: flag(code)
 .. role:: direc(code)
-.. role:: param(kbd)
 .. role:: type(emphasis)
 .. role:: value(code)
 .. |mandatory| replace:: **mandatory value**
@@ -641,7 +640,7 @@ The following flags are accepted:
 +----------------------------------------------------------------------------------------------------------+----------------------------------------------+
 | Import repositories from a file as `go_repository`_ rules. These rules will be added to the bottom of the WORKSPACE file or merged with existing rules. |
 |                                                                                                                                                         |
-| The lock file format is inferred from the file name. ``go.mod`` and ``go.work` are all supported.                                                       |
+| The lock file format is inferred from the file name. ``go.mod`` and ``go.work`` are all supported.                                                      |
 +----------------------------------------------------------------------------------------------------------+----------------------------------------------+
 | :flag:`-repo_root dir`                                                                                   |                                              |
 +----------------------------------------------------------------------------------------------------------+----------------------------------------------+
