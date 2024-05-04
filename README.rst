@@ -23,7 +23,6 @@ Gazelle build file generator
 .. _bazel-go-discuss: https://groups.google.com/forum/#!forum/bazel-go-discuss
 .. _#bazel on Go Slack: https://gophers.slack.com/archives/C1SCQE54N
 .. _#go on Bazel Slack: https://bazelbuild.slack.com/archives/CDBP88Z0D
-.. _#514: https://github.com/bazelbuild/rules_python/pull/514
 .. _#1030: https://github.com/bazelbuild/bazel-gazelle/issues/1030
 .. _rules_jvm: https://github.com/bazel-contrib/rules_jvm
 .. _rules_python: https://github.com/bazelbuild/rules_python
@@ -40,10 +39,13 @@ Gazelle build file generator
 .. _rules_swift_package_manager: https://github.com/cgrindel/rules_swift_package_manager
 .. _gazelle_rust: https://github.com/Calsign/gazelle_rust
 .. _rules_rust: https://github.com/bazelbuild/rules_rust
+.. _runtime/pprof/start_cpu_profile: https://pkg.go.dev/runtime/pprof#StartCPUProfile
+.. _runtime/pprof/write_heap_profile: https://pkg.go.dev/runtime/pprof#WriteHeapProfile
 
 .. role:: cmd(code)
 .. role:: flag(code)
 .. role:: direc(code)
+.. role:: kbd
 .. role:: param(kbd)
 .. role:: type(emphasis)
 .. role:: value(code)
@@ -137,7 +139,7 @@ Gazelle can generate Bazel BUILD files for many languages:
 
 * Starlark
 
-  `bazel-skylib`_ has an extension for generating ``bzl_library`` rules. See `bazel_skylib//gazelle/bzl`_.
+  `bazel-skylib`_ has an extension for generating ``bzl_library`` rules. See `bazel_skylib/gazelle/bzl`_.
 
 * Swift
 
@@ -585,14 +587,14 @@ The following flags are accepted:
 +-------------------------------------------------------------------+----------------------------------------+
 | :flag:`-cpuprofile filename`                                      | :value:`""`                            |
 +-------------------------------------------------------------------+----------------------------------------+
-| If specified, gazelle uses [runtime/pprof](https://pkg.go.dev/runtime/pprof#StartCPUProfile) to collect    |
+| If specified, gazelle uses `runtime/pprof/start_cpu_profile`_ to collect                                   |
 | CPU profiling information from the command and save it to the given file.                                  |
 |                                                                                                            |
 | By default, this is disabled                                                                               |
 +-------------------------------------------------------------------+----------------------------------------+
 | :flag:`-memprofile filename`                                      | :value:`""`                            |
 +-------------------------------------------------------------------+----------------------------------------+
-| If specified, gazelle uses [runtime/pprof](https://pkg.go.dev/runtime/pprof#WriteHeapProfile) to collect   |
+| If specified, gazelle uses `runtime/pprof/write_heap_profile`_ to collect                                  |
 | memory a profile information from the command and save it to a file.                                       |
 |                                                                                                            |
 | By default, this is disabled                                                                               |
@@ -641,7 +643,7 @@ The following flags are accepted:
 +----------------------------------------------------------------------------------------------------------+----------------------------------------------+
 | Import repositories from a file as `go_repository`_ rules. These rules will be added to the bottom of the WORKSPACE file or merged with existing rules. |
 |                                                                                                                                                         |
-| The lock file format is inferred from the file name. ``go.mod`` and ``go.work` are all supported.                                                       |
+| The lock file format is inferred from the file name. ``go.mod`` and ``go.work`` are all supported.                                                      |
 +----------------------------------------------------------------------------------------------------------+----------------------------------------------+
 | :flag:`-repo_root dir`                                                                                   |                                              |
 +----------------------------------------------------------------------------------------------------------+----------------------------------------------+
@@ -1065,7 +1067,7 @@ parts of build files from being modified. ``# keep`` may be written before
 a rule, before an attribute, or after a string within a list.
 
 ``# keep`` comments might take one of 2 forms; the ``# keep`` literal or a
-description prefixed by ``# keep: ``.
+description prefixed by ``# keep:``.
 
 Example
 ^^^^^^^
